@@ -1,0 +1,58 @@
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.title, p {
+    text-align:center;
+    font: 20px arial;
+}
+
+.table {
+    font: 16px arial;
+}
+
+.person {
+    stroke: steelblue;
+    stroke-width: 3px;
+}
+
+.female {
+    stroke: hotpink;
+}
+
+.divorced {
+    stroke-dasharray: 4;
+}
+
+.extendable {
+    fill: silver;
+}
+
+.non-extendable {
+    fill: #fff;
+}
+
+.node-label {
+    font: 12px arial;
+}
+
+.link {
+    fill: none;
+    stroke: #ccc;
+    stroke-width: 2px;
+}
+
+.tooltip {
+    position: absolute;
+    font: 12px arial;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    border-radius: 2px;
+}
+
+.roundImg {
+  border-radius: 50%;
+}

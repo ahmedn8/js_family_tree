@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Descendants of Dawood Khan Amaldar</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+
+<body>
+<p class="title">
+    Descendants of Dawood Khan Amaldar
+</p>
+<hr>
+<table class="table" style="float:left; width:20%;">
+    <caption/>
+    <th/>
+    <tr>
+        <td>Prepared by</td>
+        <td>: Nihal Ahmed</td>
+    </tr>
+    <tr>
+        <td>Email</td>
+        <td>: nihalahmed86@gmail.com</td>
+    </tr>
+
+</table>
+
+<table class="table" style="float:right; width:31%;">
+    <caption/>
+    <tr>
+        <th colspan="2">Legend</th>
+    </tr>
+    <tr>
+        <td><img
+                src="./assets/images/male-blue.png" width="20" height="20"
+                alt="Male"/>
+        </td>
+        <td>Male</td>
+
+        <td><img
+                src="./assets/images/female-pink.png" width="20" height="20"
+                alt="Female"/>
+        </td>
+        <td>Female</td>
+
+        <td><img
+                src="./assets/images/expandable.png" width="20" height="20"
+                alt="Expandable"/>
+        </td>
+        <td>Expandable</td>
+
+        <td><img
+                src="./assets/images/female-dashed.png" width="20" height="20"
+                alt="Expandable"/>
+        </td>
+        <td>Divorced</td>
+    </tr>
+</table>
+
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="js/d3-dag.js"></script>
+<script src="data/data_dawood.js"></script>
+<script src="js/familytree.js"></script>
+<script>
+    // insert svg object to hold the family tree
+    const svg = d3.select("body").append("svg")
+            .attr("width", document.body.offsetWidth)
+            .attr("height", document.documentElement.clientHeight);
+
+    // make family tree object
+    let FT = new FamilyTree(data, svg)
+            ;
+
+    // draw family tree
+    FT.draw();
+</script>
+</body>
