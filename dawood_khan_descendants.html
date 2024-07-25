@@ -1,62 +1,61 @@
 <!DOCTYPE html>
-
+<html lang="en">
 <head>
-    <title>Descendants of Dawood Khan Amaldar</title>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descendants of Dawood Khan Amaldar</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap"
+            rel="stylesheet">
+
     <link rel="stylesheet" href="css/main.css">
 </head>
 
-
 <body>
-<p class="title">
-    Descendants of Dawood Khan Amaldar
-</p>
-<hr>
-<table class="table" style="float:left; width:20%;">
-    <caption/>
-    <th/>
-    <tr>
-        <td>Prepared by</td>
-        <td>: Nihal Ahmed</td>
-    </tr>
-    <tr>
-        <td>Email</td>
-        <td>: nihalahmed86@gmail.com</td>
-    </tr>
 
-</table>
+<header>
+    <div class="title-section">
+        <h2>Descendants of Dawood Khan Amaldar</h2>
 
-<table class="table" style="float:right; width:31%;">
-    <caption/>
-    <tr>
-        <th colspan="2">Legend</th>
-    </tr>
-    <tr>
-        <td><img
-                src="./assets/images/male-blue.png" width="20" height="20"
-                alt="Male"/>
-        </td>
-        <td>Male</td>
+        <div class="card info-grid">
+            <span class="label">Prepared by</span>
+            <span class="label">Nihal Ahmed</span>
 
-        <td><img
-                src="./assets/images/female-pink.png" width="20" height="20"
-                alt="Female"/>
-        </td>
-        <td>Female</td>
+            <span class="label">Email</span>
+            <span>
+                <a href="mailto:nihalahmed86@gmail.com" class="contact-link">
+                    nihalahmed86@gmail.com
+                </a>
+            </span>
+        </div>
+    </div>
 
-        <td><img
-                src="./assets/images/expandable.png" width="20" height="20"
-                alt="Expandable"/>
-        </td>
-        <td>Expandable</td>
+    <div class="card">
+        <h3 class="legend-title">Legend</h3>
 
-        <td><img
-                src="./assets/images/female-dashed.png" width="20" height="20"
-                alt="Expandable"/>
-        </td>
-        <td>Divorced</td>
-    </tr>
-</table>
+        <div class="legend-grid">
+            <div class="legend-item">
+                <img src="./assets/images/male-blue.png" width="20" height="20" alt="" role="presentation">
+                <span>Male</span>
+            </div>
+            <div class="legend-item">
+                <img src="./assets/images/female-pink.png" width="20" height="20" alt="" role="presentation">
+                <span>Female</span>
+            </div>
+            <div class="legend-item">
+                <img src="./assets/images/expandable.png" width="20" height="20" alt="" role="presentation">
+                <span>Expandable</span>
+            </div>
+            <div class="legend-item">
+                <img src="./assets/images/female-dashed.png" width="20" height="20" alt="" role="presentation">
+                <span>Divorced</span>
+            </div>
+        </div>
+    </div>
+</header>
 
 <script src="https://d3js.org/d3.v7.min.js"></script>
 <script src="js/d3-dag.js"></script>
@@ -69,10 +68,10 @@
             .attr("height", document.documentElement.clientHeight);
 
     // make family tree object
-    let FT = new FamilyTree(data, svg)
-            ;
+    let FT = new FamilyTree(data, svg);
 
     // draw family tree
     FT.draw();
 </script>
 </body>
+</html>
