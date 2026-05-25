@@ -164,7 +164,7 @@ const data = {
                         "id5bid4cid3cid2aid1w1": { "id": "id5bid4cid3cid2aid1w1", "name": "Zohra Jabeen", gender:"female", "own_unions": ["uid5bid4cid3cid2aid1"]},
 
                         "id5cid4cid3cid2aid1": { "id": "id5cid4cid3cid2aid1", "name": "Naveed Ahmed", "birthyear": 1954, "birthplace":"Bangalore", "summary":["Bank Officer, State Bank of Mysore"], "parent_union": "uid4cid3cid2aid1", "own_unions": ["uid5cid4cid3cid2aid1"]},
-                        "id5cid4cid3cid2aid1w1": { "id": "id5cid4cid3cid2aid1w1", "name": "Nooshina Naveed", gender:"female", "birthplace":"Bangalore", "own_unions": ["uid5cid4cid3cid2aid1"]},
+                        "id5cid4cid3cid2aid1w1": { "id": "id5cid4cid3cid2aid1w1", "name": "Nooshina Naveed Ahmed", "birthyear": 1960, gender:"female", "birthplace":"Bangalore", "own_unions": ["uid5cid4cid3cid2aid1"]},
                             "id6aid5cid4cid3cid2aid1": { "id": "id6aid5cid4cid3cid2aid1", "name": "Nihal Ahmed", "summary":["BE"], "birthplace":"Bangalore", "birthyear": 1986, "parent_union": "uid5cid4cid3cid2aid1", "own_unions": ["uid6aid5cid4cid3cid2aid1w1", "uid6aid5cid4cid3cid2aid1w2", "uid6aid5cid4cid3cid2aid1w3"]},
                             "id6aid5cid4cid3cid2aid1w1": { "id": "id6aid5cid4cid3cid2aid1w1", "name": "Dr. Tazaian Mustafa", "summary":["MBBS"], gender:"female", "birthplace":"Chikmagalur", "birthyear": 1990, "deathplace":"Vellore", "deathyear": 2018, "own_unions": ["uid6aid5cid4cid3cid2aid1w1"]},
                                 "id7aid6aid5cid4cid3cid2aid1": { "id": "id7aid6aid5cid4cid3cid2aid1", "name": "Nahyaan Nihal Ahmed", "birthplace":"Bangalore", "birthyear": 2014, "parent_union": "uid6aid5cid4cid3cid2aid1w1"},
