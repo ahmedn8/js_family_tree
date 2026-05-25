@@ -1,25 +1,147 @@
+/* 1. Global Resets & Variables */
+:root {
+    --bg-color: #FDFDFD;
+    --surface: #ffffff;
+    --text-primary: #2d3436;
+    --text-secondary: #596266;
+    --text-muted: color-mix(in srgb, var(--text-primary) 40%, dimgray);
+
+    --accent-color: #0072CE;
+    --accent: var(--accent-color);
+
+    --border: color-mix(in srgb, var(--text-primary) 35%, transparent);
+
+    --male: #0A5EB0;
+    --female: #d63384;
+
+    --glow-self: black;
+    --glow-ancestors: blue;
+    --glow-descendants: green;
+
+    --header-height: 120px;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 body {
+    font-family: "Titillium Web", ui-sans-serif, system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    margin: 0;
+    padding: 1.25rem;
+    line-height: 1.5;
+}
+
+
+/* ─────────────────────────────────────────────────────────────────────────
+   2. Header & Layout
+   ───────────────────────────────────────────────────────────────────────── */
+header {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 1rem; /* replaced magic-margin hacks with explicit gap */
+    padding: 0.5rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.title-section h2 {
+    margin: 0 0 10px;
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+    color: var(--accent-color);
+}
+
+
+/* ─────────────────────────────────────────────────────────────────────────
+   3. Cards & Grids
+   ───────────────────────────────────────────────────────────────────────── */
+:where(.card) {
+    background: var(--surface);
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04),
+    0 4px 12px rgba(0, 0, 0, 0.06);
+    border: 1px solid var(--border);
+    flex-shrink: 0;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.25rem 0.75rem;
+    font-size: 0.85rem;
+}
+
+.info-grid .label {
+    font-weight: 600;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+}
+
+.contact-link {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+.contact-link:hover,
+.contact-link:focus-visible {
+    text-decoration: underline;
+}
+
+
+/* ─────────────────────────────────────────────────────────────────────────
+   4. Legend
+   ───────────────────────────────────────────────────────────────────────── */
+
+.legend-title {
+    font-weight: 600;
+    margin: 0 0 10px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-secondary);
+}
+
+.legend-grid {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 1rem;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+}
+
+
+/* ─────────────────────────────────────────────────────────────────────────
+   5. SVG Canvas
+   ───────────────────────────────────────────────────────────────────────── */
+
+body > svg {
+    display: block;
     width: 100%;
-    height: 100%;
-    overflow: hidden;
+    height: calc(100dvh - var(--header-height));
+    min-height: 400px;
 }
 
-.title, p {
-    text-align:center;
-    font: 20px arial;
-}
 
-.table {
-    font: 16px arial;
-}
-
+/* ─────────────────────────────────────────────────────────────────────────
+   6. Node & Link base styles
+   ───────────────────────────────────────────────────────────────────────── */
 .person {
-    stroke: steelblue;
+    stroke: var(--male);
     stroke-width: 3px;
 }
 
 .female {
-    stroke: hotpink;
+    stroke: var(--female);
 }
 
 .divorced {
@@ -27,7 +149,7 @@ body {
 }
 
 .extendable {
-    fill: silver;
+    fill: #bdc3c7;
 }
 
 .non-extendable {
@@ -35,24 +157,171 @@ body {
 }
 
 .node-label {
-    font: 12px arial;
+    font-size: 0.875rem;
 }
 
 .link {
     fill: none;
-    stroke: #ccc;
+    stroke: var(--border);
     stroke-width: 2px;
 }
 
-.tooltip {
-    position: absolute;
-    font: 12px arial;
-    padding: 12px;
-    background: rgba(0, 0, 0, 0.8);
-    color: #fff;
-    border-radius: 2px;
+.node:hover,
+.node.highlight-self,
+.node.highlight-ancestor,
+.node.highlight-descendant {
+    will-change: transform, opacity;
 }
 
-.roundImg {
-  border-radius: 50%;
+path.link,
+.node circle {
+    transition: stroke 250ms ease,
+    stroke-width 250ms ease;
+}
+
+svg text {
+    user-select: none;
+    text-rendering: geometricPrecision;
+}
+
+
+/* ─────────────────────────────────────────────────────────────────────────
+   7. Highlighting
+   ───────────────────────────────────────────────────────────────────────── */
+
+/* dimmed = unrelated to hovered node */
+.node.dimmed {
+    opacity: 0.15;
+}
+
+.highlight-self circle {
+    stroke-width: 4.5px;
+    animation: glowPulseSelf 2s infinite;
+}
+
+.highlight-ancestor circle {
+    animation: glowPulseAncestors 2s infinite;
+}
+
+.highlight-descendant circle {
+    animation: glowPulseDescendants 2s infinite;
+}
+
+.highlight-spouse circle {
+    stroke-width: 4px;
+}
+
+path.ancestor-link {
+    stroke-width: 3px;
+}
+
+path.descendant-link {
+    stroke-width: 3px;
+}
+
+
+/* ─────────────────────────────────────────────────────────────────────────
+   8. Keyframes
+   ───────────────────────────────────────────────────────────────────────── */
+@keyframes glowPulseSelf {
+    0%, 100% {
+        filter: drop-shadow(0 0 3px var(--glow-self));
+    }
+    50% {
+        filter: drop-shadow(0 0 12px var(--glow-self));
+    }
+}
+
+@keyframes glowPulseAncestors {
+    0%, 100% {
+        filter: drop-shadow(0 0 3px var(--glow-ancestors));
+    }
+    50% {
+        filter: drop-shadow(0 0 12px var(--glow-ancestors));
+    }
+}
+
+@keyframes glowPulseDescendants {
+    0%, 100% {
+        filter: drop-shadow(0 0 3px var(--glow-descendants));
+    }
+    50% {
+        filter: drop-shadow(0 0 12px var(--glow-descendants));
+    }
+}
+
+
+/* ─────────────────────────────────────────────────────────────────────────
+   9. Tooltip & Images
+   ───────────────────────────────────────────────────────────────────────── */
+.tooltip {
+    position: absolute;
+    z-index: 1000;
+    padding: 9px 11px;
+    font-size: 0.875rem;
+    color: #fff;
+    background: rgba(45, 52, 54, 0.95);
+    border-radius: 20px;
+    pointer-events: none;
+    max-width: min(420px, 90vw);
+    white-space: normal;
+    overflow-wrap: break-word;
+}
+
+.tooltip-content {
+    font-size: small;
+    display: flex;
+    align-items: flex-start;
+}
+
+.tooltip-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.tooltip-name {
+    font-size: 15px;
+}
+
+.picImg {
+    width: 120px;
+    flex-shrink: 0;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #444;
+    display: block;
+}
+
+.tooltip ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.tooltip li {
+    position: relative;
+    padding: 4px 10px 4px 16px;
+}
+
+.tooltip li::before {
+    content: "•";
+    position: absolute;
+    left: 6px;
+    color: var(--accent-color);
+}
+
+
+/* ─────────────────────────────────────────────────────────────────────────
+   10. Responsive
+   ───────────────────────────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+    .tooltip-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .picImg {
+        width: 84px;
+    }
 }
